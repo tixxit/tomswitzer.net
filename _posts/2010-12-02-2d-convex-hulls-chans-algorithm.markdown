@@ -2,8 +2,14 @@
 layout: post
 title: "2D Convex Hulls: Chan's Algorithm"
 keywords: python, programming, computational geometry, algorithms
+description: "Discussion of Timothy Chan's optimal output-sensitive convex hull algorithm."
 ---
-This is the last in a series of 3 posts on 2D convex hull algorithms. Chan’s algorithm is interesting. It runs in $O(n \log h)$ time, where h is the number of points on the hull. It was not the first optimal output-sensitive convex hull algorithm, but it is the simplest. The algorithm uses the idea of the [Jarvis March][jarvis post], but in a novel way, even mixing in the [Graham Scan][graham scan post]. You can [grab the source code from github][chan code].
+This is the last in a series of 3 posts on 2D convex hull algorithms. Chan’s
+algorithm is interesting. It runs in $O(n \log h)$ time, where h is the number
+of points on the hull. It was not the first optimal output-sensitive convex
+hull algorithm, but it is the simplest. The algorithm uses the idea of the
+[Jarvis March][jarvis post], but in a novel way, even mixing in the [Graham
+Scan][graham scan post]. You can [grab the source code from github][chan code].
 
 ### Chan’s Algorithm in a Nutshell
 
@@ -35,16 +41,23 @@ at most, $m$ points, then we only need to try to wrap the hull until we reach
 $m$ points. If we haven’t ended up where we started by this point, then we
 can just give up and guess higher while only wasting $O(n \log m)$ time. To
 keep the total number of guesses low enough, we set a parameter $t = 1$ and
-set $m = 2^(2^t)$. After each guess that we are wrong, we increment $t$ by
+set $m = 2^{2^t}$. After each guess that we are wrong, we increment $t$ by
 1, and recalculate $m$ (eg. $m = 4, 16, 256, 65536, ...$). Yes, $m$ grows
 VERY fast. However, if you analyze the runing time, you can see the reason why.
 We can define the time complexity with the following recurrence,
 
 $T(n,t) = O(n \log 2^{2^t}) + T(n, t-1)$.
 
-Since $n \log 2^{2^(t-k)} = n 2^{t-k} \log 2 = O(n (log m) / 2^k)$,
+Since $n \log 2^{2^{t-k}} = n 2^{t-k} \log 2 = O(n (log m) / 2^k)$,
 
-$T(n,t) = O(n \log 2^{2^t}) + T(n, t-1) = O(n \log 2^{2^t}) + O(n \log 2^{2^{t-1}}) + ... + O(n \log 2^{2^{t-t}}) = (1 + 1/2 + 1/4 + 1/8 + ... + 1/2^t) * O(n \log m) &lt; 2 * O(n \log m) = O(n \log m)$.
+-------- --- -------------------------------------------------------------------------
+$T(n,t)$ $=$ $O(n \log 2^{2^t}) + T(n, t-1)$
+         $=$ $O(n \log 2^{2^t}) + O(n \log 2^{2^{t-1}}) + ... + O(n \log 2^{2^{t-t}})$
+         $=$ $(1 + 1/2 + 1/4 + 1/8 + ... + 1/2^t) * O(n \log m)
+         $<$ $2 * O(n \log m)$
+         $=$ $O(n \log m)$.
+-------- --- -------------------------------------------------------------------------
+
 ### The Implementation
 
 The main loop is pretty straightforward. We simply have to keep updating our
@@ -66,16 +79,16 @@ The <a href="../posts/2010-03-01-2d-hulls-graham.markdown">Graham Scan is just a
 TURN_LEFT, TURN_RIGHT, TURN_NONE = (1, -1, 0)
 
 def turn(p, q, r):
-    &quot;&quot;&quot;Returns -1, 0, 1 if p,q,r forms a right, straight, or left turn.&quot;&quot;&quot;
+    """Returns -1, 0, 1 if p,q,r forms a right, straight, or left turn."""
     return cmp((q[0] - p[0])*(r[1] - p[1]) - (r[0] - p[0])*(q[1] - p[1]), 0)
 
 def _keep_left(hull, r):
-    while len(hull) &gt; 1 and turn(hull[-2], hull[-1], r) != TURN_LEFT:
+    while len(hull) > 1 and turn(hull[-2], hull[-1], r) != TURN_LEFT:
             hull.pop()
     return (not len(hull) or hull[-1] != r) and hull.append(r) or hull
 
 def _graham_scan(points):
-    &quot;&quot;&quot;Returns points on convex hull of an array of points in CCW order.&quot;&quot;&quot;
+    """Returns points on convex hull of an array of points in CCW order."""
     points.sort()
     lh = reduce(_keep_left, points, [])
     uh = reduce(_keep_left, reversed(points), [])
@@ -90,11 +103,11 @@ as you’d expect.
 
 ```python
 def _min_hull_pt_pair(hulls):
-    &quot;&quot;&quot;Returns the hull, point index pair that is minimal.&quot;&quot;&quot;
+    """Returns the hull, point index pair that is minimal."""
     h, p = 0, 0
     for i in xrange(len(hulls)):
         j = min(xrange(len(hulls[i])), key=lambda j: hulls[i][j])
-        if hulls[i][j] &amp;lt; hulls[h][p]:
+        if hulls[i][j] < hulls[h][p]:
             h, p = i, j
     return (h, p)
 ```
@@ -130,7 +143,7 @@ def _next_hull_pt_pair(hulls, pair):
         # Now figure out if this is further right then our previous guess (next).
         q, r = hulls[next[0]][next[1]], hulls[h][s]
         t = turn(p, q, r)
-        if t == TURN_RIGHT or t == TURN_NONE and _dist(p, r) &gt; _dist(p, q):
+        if t == TURN_RIGHT or t == TURN_NONE and _dist(p, r) > _dist(p, q):
             next = (h, s)
             # Notice that we are a little more careful with collinear points.
     return next
@@ -143,7 +156,7 @@ it out.
 
 ```python
 def convex_hull(pts):
-    &quot;&quot;&quot;Returns the points on the convex hull of pts in CCW order.&quot;&quot;&quot;
+    """Returns the points on the convex hull of pts in CCW order."""
     for m in (2 ** (2 ** t) for t in xrange(len(pts))):
         hulls = [_graham_scan(pts[i:i + m]) for i in xrange(0, len(pts), m)]
         # Here we find the extreme point and initialize our hull with it.
@@ -172,6 +185,8 @@ So, start by breaking the problem down into cases. We have a sub-list of the
 original hull and we set c to the median point of this list. Either the tangent
 is the c, or it is in the left half, or it is in the right half.
 
+![The 3 cases where the tangent is on the left chain.](/img/posts/cases.png)
+
 Checking if it is c is easy, as both the points before and after c will be to
 the left of the line defined by $p$ and $c$ ($p$ is the point we wish to
 find the tangent from).
@@ -180,20 +195,18 @@ Checking if the tangent is in the the left side of the chain is a little
 tougher. However, there are really only 3 cases we need to check for. I’ve
 diddled this little drawing that helps illustrate these.
 
-![The 3 cases where the tangent is on the left chain.](../images/posts/cases.png)
-
 Putting this in code form isn’t too hard. Most importantly, we need to find the
 orientation of points before and after c (l), relative to p, c (p, l).
 
 ```python
 def _rtangent(hull, p):
-    &quot;&quot;&quot;Return the index of the point in hull that the right tangent line from p
+    """Return the index of the point in hull that the right tangent line from p
     to hull touches.
-    &quot;&quot;&quot;
+    """
     l, r = 0, len(hull)
     l_prev = turn(p, hull[0], hull[-1])
     l_next = turn(p, hull[0], hull[(l + 1) % r])
-    while l &lt; r:
+    while l < r:
         c = (l + r) / 2
         c_prev = turn(p, hull[c], hull[(c - 1) % len(hull)])
         c_next = turn(p, hull[c], hull[(c + 1) % len(hull)])

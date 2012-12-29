@@ -2,6 +2,7 @@
 layout: post
 title: Easy Multilingual Theming with XDV
 keywords: i18n, programming, plone, theming, xdv
+description: "Using language-specific stylesheets in Plone with XDV."
 ---
 I use [Plone][plone] at work (and love it). Lately I’ve started getting into
 [using XDV to theme my sites][XDV] (3 so far). It’s fantastic. Our latest site
@@ -14,8 +15,8 @@ lacking in some browsers, so I contemplated for a few minutes, then added 2
 rules to my rules.xml file:
 
 ```xml
-&lt;drop theme="//*[@lang='fr']" if-content="/html[@lang!='fr']" /&gt;
-&lt;drop theme="//*[@lang='en']" if-content="/html[@lang!='en']" /&gt;
+<drop theme="//*[@lang='fr']" if-content="/html[@lang!='fr']" />
+<drop theme="//*[@lang='en']" if-content="/html[@lang!='en']" />
 ```
 
 Problem solved! To handle language-specific CSS, I just created 2 new css
@@ -23,8 +24,8 @@ files, one for English and one for French and added a lang attribute in the
 link element.
 
 ```xml
-&lt;link lang="en" href="style-en.css" rel="stylesheet" type="text/css" /&gt;
-&lt;link lang="fr" href="style-fr.css" rel="stylesheet" type="text/css" /&gt;
+<link lang="en" href="style-en.css" rel="stylesheet" type="text/css" />
+<link lang="fr" href="style-fr.css" rel="stylesheet" type="text/css" />
 ```
 
 I did the same thing for static text and images as well.

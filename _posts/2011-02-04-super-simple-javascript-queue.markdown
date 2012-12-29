@@ -2,6 +2,7 @@
 layout: post
 title: Super Simple JavaScript Queue
 keywords: javascript, programming, algorithms, size matters
+description: "A simple queue implementation, optimized for minified source size."
 ---
 One of the things I like about JavaScript is that it rewards funky coding
 techniques. Good JavaScript is short and sweet. Simple to use and fast to
@@ -33,11 +34,11 @@ function fail(s) { throw new Error(s) }
 var a = q();
 a() == undefined || fail();
 a(1); a(2); a(3);
-a() == 1 &amp;&amp; a() == 2 &amp;&amp; a() == 3 || fail();
+a() == 1 && a() == 2 && a() == 3 || fail();
 a() == undefined || fail();
 // Or...
 a = q()(1)(2)(3);
-a() == 1 &amp;&amp; a() == 2 &amp;&amp; a() == 3 &amp;&amp; a() == undefined || fail();
+a() == 1 && a() == 2 && a() == 3 && a() == undefined || fail();
 ```
 
 Of course, being simple means it has a few problems. There is no way to peek at

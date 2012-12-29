@@ -2,6 +2,7 @@
 layout: post
 title: "2D Convex Hulls: Graham Scan"
 keywords: python, programming, computational geometry, algorithms
+description: "Discussion of Ronald Graham's sorting-based approach to computing the convex hull."
 ---
 This is the 2nd post in a series of 3 on 2D convex hull algorithms. The first
 covered the [Jarvis March][jarvis post] and here I’ll be covering the [Graham
@@ -43,11 +44,11 @@ themselves. This may seem hard at first, but because the points were sorted in
 CCW order around the first point, $p_1$, it is actually quite simple.
 
 We know the point $p_i$ lies to the left of $p_1 p_i-1$ and all other
-points $p_k, 1 &lt; k &lt; i-1$, lie to the right of $p_1 p_{i-1}$, so one
+points $p_k, 1 < k < i-1$, lie to the right of $p_1 p_{i-1}$, so one
 of the tangents will have to be the edge $p_i p_1$. Knowing this, we can find
 the other point of tangency by starting at $p_{i-1}$ (the last point in the
 list of hull points) and working backwards. The point of tangency is the first
-point $p_j, j &lt; i$, where $p_{j-1}, p_j, p_i$ form a left (CCW) turn.
+point $p_j, j < i$, where $p_{j-1}, p_j, p_i$ form a left (CCW) turn.
 After finding the point $p_j$, we simply remove all points between this and
 the other point of tangency, $p_1$ (ie. we simply remove all points after
 $p_j$ in our hull list). The point $p_i$ is then appended to the end of our
@@ -64,7 +65,7 @@ def turn(p, q, r):
     return cmp((q[0] - p[0])*(r[1] - p[1]) - (r[0] - p[0])*(q[1] - p[1]), 0)
 
 def _keep_left(hull, r):
-    while len(hull) &gt; 1 and turn(hull[-2], hull[-1], r) != TURN_LEFT:
+    while len(hull) > 1 and turn(hull[-2], hull[-1], r) != TURN_LEFT:
         hull.pop()
     hull.append(r)
     return hull
@@ -81,7 +82,7 @@ hull twice, we simply check the point at the end.
 
 ```python
 def _keep_left(hull, r):
-    while len(hull) &gt; 1 and turn(hull[-2], hull[-1], r) != TURN_LEFT:
+    while len(hull) > 1 and turn(hull[-2], hull[-1], r) != TURN_LEFT:
         hull.pop()
     # We check that hull[-1] != r to handle degenerate cases (ie. multisets)
     if not hull or hull[-1] != r:

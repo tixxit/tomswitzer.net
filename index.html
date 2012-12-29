@@ -1,6 +1,40 @@
 ---
 layout: default
-title: Tom Switzer
 ---
-<h1>Stuff</h1>
-<p>Yep.</p>
+<section class="span12">
+  <p class="lead">Read about programming, computer science, web development and other fun topics.</p>
+</section>
+<section class="span6">
+  <h2>Posts</h2>
+
+  <ul class="unstyled">
+    {% for post in site.posts %}
+    <dl class="post-link">
+      <dt><a href="{{ post.url }}">{{ post.title }}</a> <span class="muted post-date">{{ post.date | date: "%B %e, %Y" }}</span></dt>
+      <dd><small>{{ post.description }}</small></dd>
+    </dl>
+    {% endfor %}
+  </ul>
+</section>
+<section class="span6">
+  <h2>About Me</h2>
+
+  <a href="/img/profile.jpg" title="Lovely picture of yours truly.">
+    <img class="pull-left media-object img-rounded" src="/img/profile140.jpg" width="140" height="140" style="margin-right: 10px">
+  </a>
+
+  <p>I'm <strong>Tom Switzer</strong>, a software developer. I've dabbled in a wide variety of
+  programming-related areas, including web development, computational geometry,
+  bioinformatics, and data analytics.</p>
+
+  <p>I can be found in Boulder, CO, working at <a href="http://precog.com/">Precog</a>
+  on our awesome data analytics platform, also called Precog.</p>
+
+  <p>In my spare time I like to work on <a href="https://github.com/non/spire">Spire</a>,
+  a Scala numerics library. I also like to get outdoors, snowboard, sail, and play
+  board games.</p>
+
+  <p>You can find me on <a href="http://github.com/tixxit/">GitHub</a>,
+  <a href="http://twitter.com/tixxit/">Twitter</a>, or trolling the Scala mailing lists.
+  If you'd like to e-mail me, then you can find my address on my GitHub profile.</p>
+</section>

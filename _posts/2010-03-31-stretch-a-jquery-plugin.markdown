@@ -2,6 +2,7 @@
 layout: post
 title: "Stretch: A jQuery Plugin"
 keywords: javascript, programming, jquery, text
+description: "A jQuery plugin to stretch text to the full width of its container."
 ---
 I created [a jQuery plugin to resize text so that it fills up the full width of
 its container][repo]. It does this in a 2 step process:
@@ -18,13 +19,14 @@ consider the height during the resizing, always fills to the maximum width
 time.
 
 Using it is simple. For example, to stretch the heading of this blog to the
-full width of its container, we can simply run:
+full width of its container (*this is no longer true*), we can simply run:
 
 ```javascript
 $("#header h1").contents().stretch();
 ```
 
-I also use it to stretch the dates beside the blog posts so the year, month, and day all have equal width.
+I also use it to stretch the dates beside the blog posts so the year, month,
+and day all have equal width (*I've since changed 'themes'*).
 
 ```javascript
 $(".post-date").find(".year, .month, .day").stretch();

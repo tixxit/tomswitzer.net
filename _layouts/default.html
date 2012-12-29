@@ -3,30 +3,35 @@
   <head>
     <meta charset="utf-8" />
 
-    <title>{{ page.title }}</title>
+    <title>{% if page.title %} {{ page.title }} {% else %} Tom Switzer {% endif %}</title>
     <meta name="author" content="Tom Switzer" />
-    {% if page.keywords %}
-      <meta name="keywords" content="{{ page.keywords }}">
-    {% endif %}
-    {% if page.description %}
-      <meta name="description" content="{{ page.description }}">
-    {% endif %}
+    {% if page.keywords %}<meta name="keywords" content="{{ page.keywords }}">{% endif %}
+    {% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!--[if lt IE 9]>
     <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-
-    <link rel="stylesheet" type="text/css" media="all" href="/css/style.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="/css/bootstrap-responsive.min.css" />
     <link rel="stylesheet" type="text/css" media="all" href="/css/hk-kate.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="/css/style.css" />
 
-    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-    </script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
-    </script>
+    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   </head>
   <body>
-    <div id="content">
-      {{ content }}
+    <div class="container">
+      <section id="header" class="row page-header">
+        <h1>
+          <a href="http://tomswitzer.net:4000/">Tom Switzer</a>
+          <small><a href="{{ page.url }}">{{ page.title }}</a></small>
+        </h1>
+      </section>
+      <section id="content" class="row">
+        {{ content }}
+      </section>
     </div>
   </body>
+  <!-- This source code made possible by Vim, Jekyll, Pandoc, and Tom Switzer's fingers. -->
 </html>

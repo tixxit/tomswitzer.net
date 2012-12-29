@@ -2,6 +2,7 @@
 layout: post
 title: Permutations and Combinations
 keywords: python, programming, bruteforce
+description: "Finding all permutations and combinations in Python."
 ---
 Quite often while programming I find my self going through all possible
 *k*-combinations of a list. That is, all possible unordered sets of size *k*
@@ -21,7 +22,7 @@ def sort(lst, cmp=cmp):
     """Sort the list lst."""
     for i in xrange(len(lst)):
         for j in xrange(i + 1, len(lst)):
-            if lst[j] &lt; lst[i]:
+            if lst[j] < lst[i]:
                 lst[j], lst[i] = lst[i], lst[j]
 ```
 
@@ -46,7 +47,7 @@ from permute import combinations
 def sort(lst, cmp=cmp):
     """Sort list lst."""
     for i,j in combinations(range(len(lst)), 2):
-        if cmp(a[j], a[i]) &lt; 0:
+        if cmp(a[j], a[i]) < 0:
             a[i], a[j] = a[j], a[i]
 ```
 
@@ -94,12 +95,12 @@ def solve_tsp(weights):
         dist = 0
         for e in ((cand[i-1], cand[i]) for i in xrange(1, len(nodes))):
             d = e in weights and weights[e] or weights[(e[1], e[0])]
-            if d &lt; 0:
+            if d < 0:
                 dist = -1
                 break
             else:
                 dist += d
-            if dist &gt;= 0 and (min &lt; 0 or dist &lt; min):
+            if dist >= 0 and (min < 0 or dist < min):
                 path, min = cand, dist
     return path, min
 ```

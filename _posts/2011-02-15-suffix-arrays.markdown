@@ -2,6 +2,7 @@
 layout: post
 title: Suffix Arrays in JavaScript
 keywords: javascript, programming, algorithms
+description: "An implementation of Kärkkäinen’s and Sanders’s suffix array algorithm in Javascript."
 ---
 [Suffix arrays are a memory efficient data structure][Wikipedia] for storing
 the sorted order of the suffixes of a string. There is really nothing fancy;
@@ -20,13 +21,13 @@ var s = "... put some stuff in here ...",
 ```
 
 If you have anything more complicated, then you can instead pass a function
-that takes an index (integer &gt;= 0) and returns a symbol (an integer) along
+that takes an index (integer >= 0) and returns a symbol (an integer) along
 with its length. For example,
 
 ```javascript
 var s = [ 0xBEEFCAB, ..., 0xFEEDF00B ],
     a = suffixArray(function(i) {
-        return (s[i &gt;&gt; 2] &gt;&gt; ((i &amp; 3) &lt;&lt; 3)) &amp; 255;
+        return (s[i >> 2] >> ((i & 3) << 3)) & 255;
     }, s.length * 4);
 ```
 

@@ -2,6 +2,7 @@
 layout: post
 title: "2D Convex Hulls: Jarvis March"
 keywords: python, programming, computational geometry, algorithms
+description: "The simple approach to computing the convex hull in 2D."
 ---
 I’ve found myself coding [convex hull][ch] algorithms on a few occasions now,
 so I decided to implement a few and talk about them here, in case someone new
@@ -26,7 +27,7 @@ points in the point set lie to the left of the directed line through *p, q*
 (this line lies on the hull boundary). We can then update *p* to *q* and repeat
 the process until we end up with the point we started at.
 
-![p, q, r forming a left turn](../images/posts/left-turn.png)
+![p, q, r forming a left turn](/img/posts/left-turn.png)
 
 The heart of the algorithm really lies in finding the furthest right point *q*,
 relative to an extreme point *p*. Say you have 3 points *p*, *q* and *r*. We
@@ -56,7 +57,7 @@ def _next_hull_pt(points, p):
     return q
 ```
 
-![p in between p &amp; q](../images/posts/degenerate-problem.png)
+![p in between p & q](/img/posts/degenerate-problem.png)
 
 The above function is simple, but it assumes the points are in general
 position; that there are no 3 collinear points. The first problem arises if
@@ -81,7 +82,7 @@ def _next_hull_pt(points, p):
     q = p
     for r in points:
         t = turn(p, q, r)
-        if t == TURN_RIGHT or t == TURN_NONE and _dist(p, r) &gt; _dist(p, q):
+        if t == TURN_RIGHT or t == TURN_NONE and _dist(p, r) > _dist(p, q):
             q = r
     return q
 ```
@@ -118,7 +119,7 @@ You can also [download the complete version of the code][jarvis code]. Next post
 
 [ch]: http://en.wikipedia.org/wiki/Convex_hull "Convex hulls on Wikipedia"
 [jarvis]: http://en.wikipedia.org/wiki/Jarvis_march "Jarvis March (Gift Wrapping)"
-[jarivs code]: http://gist.github.com/252222 "Source code for the Jarvis March"
+[jarvis code]: http://gist.github.com/252222 "Source code for the Jarvis March"
 [graham scan]: http://en.wikipedia.org/wiki/Graham_scan "Graham (Andrews) Scan"
 [graham scan code]: http://gist.github.com/242402 "Source code for the Graham Scan"
 [chan]: http://www.cs.uwaterloo.ca/~tmchan/conv23d.ps.gz "Chan's Algorithm (original paper)"
