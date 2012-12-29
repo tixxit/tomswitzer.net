@@ -117,6 +117,9 @@ time `next()` is called.
 
 You can also [download the complete version of the code][jarvis code]. Next post I’ll cover the Graham Scan.
 
+[jarvis post]: /2009/12/jarvis-march/ "Discussion of the Jarvis march"
+[graham scan post]: /2010/03/graham-scan/ "Discussion of the Graham-Andrews scan"
+[chan post]: /2010/12/2d-convex-hulls-chans-algorithm/ "Discussion of Chan's algorithm"
 [ch]: http://en.wikipedia.org/wiki/Convex_hull "Convex hulls on Wikipedia"
 [jarvis]: http://en.wikipedia.org/wiki/Jarvis_march "Jarvis March (Gift Wrapping)"
 [jarvis code]: http://gist.github.com/252222 "Source code for the Jarvis March"

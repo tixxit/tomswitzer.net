@@ -73,7 +73,7 @@ def convex_hull(pts):
         # more code goes here...
 ```
 
-The <a href="../posts/2010-03-01-2d-hulls-graham.markdown">Graham Scan is just a copy from my previous post</a>.
+The [Graham Scan is just a copy from my previous post][graham scan post].
 
 ```python
 TURN_LEFT, TURN_RIGHT, TURN_NONE = (1, -1, 0)
@@ -226,7 +226,9 @@ def _rtangent(hull, p):
 
 And that’s basically it. You can [get the source code at github (as a gist)][chan code].
 
-
+[jarvis post]: /2009/12/jarvis-march/ "Discussion of the Jarvis march"
+[graham scan post]: /2010/03/graham-scan/ "Discussion of the Graham-Andrews scan"
+[chan post]: /2010/12/2d-convex-hulls-chans-algorithm/ "Discussion of Chan's algorithm"
 [jarvis]: http://en.wikipedia.org/wiki/Jarvis_march "Jarvis March (Gift Wrapping)"
 [jarivs code]: http://gist.github.com/252222 "Source code for the Jarvis March"
 [graham scan]: http://en.wikipedia.org/wiki/Graham_scan "Graham (Andrews) Scan"

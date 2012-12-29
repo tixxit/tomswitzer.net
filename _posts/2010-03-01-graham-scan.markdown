@@ -134,6 +134,9 @@ list first.
 
 I posted the [full source for the Graham Scan in Python (all 20 lines) as a Gist][graham scan code].
 
+[jarvis post]: /2009/12/jarvis-march/ "Discussion of the Jarvis march"
+[graham scan post]: /2010/03/graham-scan/ "Discussion of the Graham-Andrews scan"
+[chan post]: /2010/12/2d-convex-hulls-chans-algorithm/ "Discussion of Chan's algorithm"
 [jarvis]: http://en.wikipedia.org/wiki/Jarvis_march "Jarvis March (Gift Wrapping)"
 [jarivs code]: http://gist.github.com/252222 "Source code for the Jarvis March"
 [graham scan]: http://en.wikipedia.org/wiki/Graham_scan "Graham (Andrews) Scan"
