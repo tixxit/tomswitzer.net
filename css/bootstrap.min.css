@@ -526,6 +526,12 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini{*padding-top:1px;*padding-
 .media .pull-left{margin-right:10px;}
 .media .pull-right{margin-left:10px;}
 .media-list{margin-left:0;list-style:none;}
+.pull-right{float:right;}
+.pull-left{float:left;}
+.hide{display:none;}
+.show{display:block;}
+.invisible{visibility:hidden;}
+.affix{position:fixed;}
 .hidden{display:none;visibility:hidden;}
 .visible-phone{display:none !important;}
 .visible-tablet{display:none !important;}

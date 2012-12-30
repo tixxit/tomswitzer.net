@@ -2840,6 +2840,24 @@ input[type="submit"].btn.btn-mini {
   margin-left: 0;
   list-style: none;
 }
+.pull-right {
+  float: right;
+}
+.pull-left {
+  float: left;
+}
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}
+.invisible {
+  visibility: hidden;
+}
+.affix {
+  position: fixed;
+}
 .hidden {
   display: none;
   visibility: hidden;
