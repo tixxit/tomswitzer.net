@@ -24,3 +24,7 @@ dt .muted { font-weight: normal; }
 .sourceCode {
   clear: right;
 }
+
+.post-current { text-align: center; }
+.post-previous { text-align: left; }
+.post-next { text-align: right; }

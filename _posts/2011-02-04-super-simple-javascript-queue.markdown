@@ -54,4 +54,4 @@ function q(){var a,b,c,d;return d=function(e){e!=c?(b=b?b.n={v:e}:a={v:e},e=d):(
 *In case anyone mentions it, Array’s `push()` and `shift()` is not a
 replacement for a proper a queue, since `shift()` is an $O(n)$ operation.*
 
-[uglify]: https://github.com/mishoo/UglifyJS [Uglify JS]
+[uglify]: https://github.com/mishoo/UglifyJS "Uglify JS"
