@@ -1,8 +1,0 @@
-name: "Tom Switzer's Blog"
-permalink: /:year/:month/:title/
-markdown: pandoc
-pandoc:
-  extensions: [smart, mathjax]
-url: "http://tomswitzer.net/"
-auto: true
-
